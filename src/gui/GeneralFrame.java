@@ -4,6 +4,7 @@ import entities.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class GeneralFrame extends JFrame {
@@ -46,7 +47,7 @@ public class GeneralFrame extends JFrame {
         database.getSubscriptions().add(new Subscription(5, "Enterprise | All functionality", 100.0));
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500,500);
+        setSize(500,540);
         setTitle("Plagiarismnetics 0.1");
         setLayout(null);
 
@@ -185,7 +186,7 @@ public class GeneralFrame extends JFrame {
         this.profilePage = profilePage;
     }
 
-    public void updateCurrentUserIndex() {
+    public void updateCurrentUserIndex() throws IOException {
         int current = this.getLoginPage().getCurrentUserIndex();
         this.getProfilePage().setCurrentUserIndex(current);
         this.getMainPage().setCurrentUserIndex(current);

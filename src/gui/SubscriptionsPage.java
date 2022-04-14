@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -49,15 +50,15 @@ public class SubscriptionsPage extends JPanel {
             if (parent.getDatabase().getOrganizations().get(i).getOrganizationName().
                     equals(parent.getDatabase().getUsers().get(parent.getLoginPage().getCurrentUserIndex()).
                             getOrganization())) {
-                                index = i;
-                                break;
+                index = i;
+                break;
             }
         }
 
         for (Subscription subscription : parent.getDatabase().getSubscriptions()) {
             Object[] row = {subscription.getSubscriptionID(), subscription.getDescription(),
-                (subscription.getPrice() - (subscription.getPrice() * (parent.getDatabase().getOrganizations().
-                        get(index).getDiscountPercent()*1.0/100)))};
+                    (subscription.getPrice() - (subscription.getPrice() * (parent.getDatabase().getOrganizations().
+                            get(index).getDiscountPercent()*1.0/100)))};
             subscriptionsTable.addRow(row);
         }
 
@@ -105,7 +106,14 @@ public class SubscriptionsPage extends JPanel {
                 );
 
                 JOptionPane.showMessageDialog(parent, "Successfully Paid");
-                parent.updateCurrentUserIndex();
+                try {
+                    parent.updateCurrentUserIndex();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+
+                parent.getMainPage().setVisible(true);
+                parent.getSubscriptionsPage().setVisible(false);
             }
         });
         add(confirmButton);

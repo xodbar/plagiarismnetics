@@ -1,65 +1,67 @@
 package entities;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class ListItem {
-    private User user;
-    private Purchase purchase;
-    private Subscription subscription;
-    private Organization organization;
+public class ListItem implements Serializable {
+    private Integer id;
+    private Integer userId;
+    private Integer purchaseId;
+    private Integer subscriptionId;
+    private Integer organizationId;
 
+    public ListItem() {}
 
-    public ListItem() {
-        this.user = new User();
-        this.purchase = new Purchase();
-        this.subscription = new Subscription();
-        this.organization = new Organization();
+    public ListItem(Integer id, Integer userId, Integer purchaseId, Integer subscriptionId, Integer organizationId) {
+        this.id = id;
+        this.userId = userId;
+        this.purchaseId = purchaseId;
+        this.subscriptionId = subscriptionId;
+        this.organizationId = organizationId;
     }
 
-    public ListItem(User user, Purchase purchase, Subscription subscription) {
-        this.user = user;
-        this.purchase = purchase;
-        this.subscription = subscription;
-        this.organization = null;
+    public Integer getId() {
+        return id;
     }
 
-    public ListItem(User user, Purchase purchase, Subscription subscription, Organization organization) {
-        this.user = user;
-        this.purchase = purchase;
-        this.subscription = subscription;
-        this.organization = organization;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Purchase getPurchase() {
-        return purchase;
+    public Integer getPurchaseId() {
+        return purchaseId;
     }
 
-    public void setPurchase(Purchase purchase) {
-        this.purchase = purchase;
+    public void setPurchaseId(Integer purchaseId) {
+        this.purchaseId = purchaseId;
     }
 
-    public Subscription getSubscription() {
-        return subscription;
+    public Integer getSubscriptionId() {
+        return subscriptionId;
     }
 
-    public void setSubscription(Subscription subscription) {
-        this.subscription = subscription;
+    public void setSubscriptionId(Integer subscriptionId) {
+        this.subscriptionId = subscriptionId;
     }
 
-    public Organization getOrganization() {
-        return organization;
+    public Integer getOrganizationId() {
+        return organizationId;
     }
 
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
+    public void setOrganizationId(Integer organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    @Override
+    public String toString() {
+        return ("~ID: " + id + "\n~User: " + userId + "\n~Purchase: " + purchaseId +
+                "\n~Subscription: " + subscriptionId + "\n~Organization: " + organizationId);
     }
 }

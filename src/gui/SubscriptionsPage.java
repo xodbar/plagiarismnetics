@@ -46,21 +46,21 @@ public class SubscriptionsPage extends JPanel {
         DefaultTableModel subscriptionsTable = new DefaultTableModel(columnNames, 0);
 
         int index = -1;
-        for (int i = 0; i < parent.getDatabase().getOrganizations().size(); i++) {
+        /*for (int i = 0; i < parent.getDatabase().getOrganizations().size(); i++) {
             if (parent.getDatabase().getOrganizations().get(i).getOrganizationName().
                     equals(parent.getDatabase().getUsers().get(parent.getLoginPage().getCurrentUserIndex()).
                             getOrganization())) {
                 index = i;
                 break;
             }
-        }
+        }*/
 
-        for (Subscription subscription : parent.getDatabase().getSubscriptions()) {
+        /*for (Subscription subscription : parent.getDatabase().getSubscriptions()) {
             Object[] row = {subscription.getSubscriptionID(), subscription.getDescription(),
                     (subscription.getPrice() - (subscription.getPrice() * (parent.getDatabase().getOrganizations().
                             get(index).getDiscountPercent()*1.0/100)))};
             subscriptionsTable.addRow(row);
-        }
+        }*/
 
         JScrollPane tableScrollable = new JScrollPane(new JTable(subscriptionsTable));
         tableScrollable.setLocation(30, 70);
@@ -73,9 +73,9 @@ public class SubscriptionsPage extends JPanel {
         add(radioBoxLabel);
 
         ArrayList<Integer> idSet = new ArrayList<>();
-        for(int i = 0; i < parent.getDatabase().getSubscriptions().size(); i++){
+        /*for(int i = 0; i < parent.getDatabase().getSubscriptions().size(); i++){
             idSet.add(i);
-        }
+        }*/
         JComboBox<Object> ids = new JComboBox<>(idSet.toArray());
         ids.setLocation(160, 400);
         ids.setSize(50, 30);
@@ -86,8 +86,8 @@ public class SubscriptionsPage extends JPanel {
         JButton confirmButton = new JButton("Confirm");
         confirmButton.setLocation(220, 400);
         confirmButton.setSize(100, 30);
-        Subscription subscription = parent.getDatabase().getSubscriptions().get(ids.getSelectedIndex());
-        confirmButton.addActionListener(new ActionListener() {
+        /*Subscription subscription = parent.getDatabase().getSubscriptions().get(ids.getSelectedIndex());*/
+        /*confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 parent.getDatabase().getPurchases().add(new Purchase(
@@ -115,7 +115,7 @@ public class SubscriptionsPage extends JPanel {
                 parent.getMainPage().setVisible(true);
                 parent.getSubscriptionsPage().setVisible(false);
             }
-        });
+        });*/
         add(confirmButton);
     }
 }

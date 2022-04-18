@@ -3,6 +3,7 @@ package gui;
 import entities.User;
 
 import javax.swing.*;
+import java.io.IOException;
 
 public class SignInPage extends JPanel {
     private GeneralFrame parent;
@@ -49,7 +50,11 @@ public class SignInPage extends JPanel {
                 parent.getMainPage().setVisible(true);
                 parent.setMenuVisible(true);
 
-                parent.updateCurrentUserIndex();
+                try {
+                    parent.updateCurrentUserIndex();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         add(loginButton);
@@ -73,11 +78,11 @@ public class SignInPage extends JPanel {
         int successfullySignedIn = -1;
 
         int i = 0;
-        for (User user : parent.getDatabase().getUsers())
+        for (User user : parent.getDatabaseManager().getUsers())
             if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
-                successfullySignedIn = i;
+                successfullySignedIn = user.getUserID();
                 break;
-            } else i++;
+            }
 
         return successfullySignedIn;
     }

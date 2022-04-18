@@ -27,15 +27,15 @@ public class ProfilePage extends JPanel {
 
         if (currentUserIndex >= 0) {
             int organizationIndex = -1, i = 0;
-            for (Organization organization : parent.getDatabase().getOrganizations()) {
+            for (Organization organization : parent.getDatabaseManager().getOrganizations()) {
                 if (organization.getOrganizationName().
-                        equals(parent.getDatabase().getUsers().get(currentUserIndex).getOrganization())) {
+                        equals(parent.getDatabaseManager().getUsers().get(currentUserIndex).getOrganization())) {
                     organizationIndex = i;
                     break;
                 } else i++;
             }
 
-            boolean hasActiveSubscription = false;
+           /*boolean hasActiveSubscription = false;
             int purchaseId = -1, j = 0;
             for (ListItem listItem : parent.getDatabase().getListItems()) {
                 if (listItem.getUser().getUserID().equals(parent.getDatabase().getUsers().
@@ -46,10 +46,10 @@ public class ProfilePage extends JPanel {
                         break;
                     }
                 } else j++;
-            }
+            }*/
 
 
-            JLabel title = new JLabel("PROFILE INFO");
+            /*JLabel title = new JLabel("PROFILE INFO");
             title.setLocation(150, 10);
             title.setSize(300, 30);
             title.setFont(new Font("Serif", Font.BOLD, 20));
@@ -86,7 +86,7 @@ public class ProfilePage extends JPanel {
             add(organization);
 
             JLabel activeSubscription = new JLabel("Active subscription: " + ((hasActiveSubscription) ?
-                    parent.getDatabase().getListItems().get(j).getSubscription().getDescription() : "None"));
+                    parent.getListItems().get(j).getSubscription().getDescription() : "None"));
             activeSubscription.setLocation(30, 300);
             activeSubscription.setSize(300, 30);
             add(activeSubscription);
@@ -115,9 +115,9 @@ public class ProfilePage extends JPanel {
             JLabel purchaseHistoryLabel = new JLabel("Purchase history:");
             purchaseHistoryLabel.setLocation(250, 50);
             purchaseHistoryLabel.setSize(300, 30);
-            add(purchaseHistoryLabel);
+            add(purchaseHistoryLabel);*/
 
-            JTextArea purchaseHistory = new JTextArea();
+            /*JTextArea purchaseHistory = new JTextArea();
             purchaseHistory.setSize(200, 300);
             purchaseHistory.setLocation(250, 80);
             for (ListItem item : parent.getDatabase().getListItems()) {
@@ -127,9 +127,9 @@ public class ProfilePage extends JPanel {
                             item.getPurchase().getPurchaseID() + " Date: " + item.getPurchase().getOrderDate() +
                             " Is active: " + item.getPurchase().isActive());
                 }
-            }
+            }*/
 
-            add(purchaseHistory);
+            /*add(purchaseHistory);*/
         }
     }
 }

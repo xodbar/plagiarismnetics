@@ -1,8 +1,9 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Database {
+public class Database implements Serializable {
     private ArrayList<User> users;
     private ArrayList<Subscription> subscriptions;
     private ArrayList<Purchase> purchases;

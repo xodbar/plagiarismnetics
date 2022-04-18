@@ -98,7 +98,7 @@ public class MainPage extends JPanel {
         JButton startCheckingButton = new JButton("Check plagiarism");
         startCheckingButton.setLocation(30, 370);
         startCheckingButton.setSize(175, 30);
-        startCheckingButton.addActionListener(new ActionListener() {
+        /*startCheckingButton.addActionListener(new ActionListener() {
                                                   public void actionPerformed(ActionEvent ae) {
                                                       if (subscriptionId() > 0) {
                                                           double rand = 0;
@@ -131,13 +131,13 @@ public class MainPage extends JPanel {
                                                       }
                                                   }
                                               }
-        );
+        );*/
         add(startCheckingButton);
 
         JButton subCheckingButton = new JButton("Check subscription");
         subCheckingButton.setLocation(250, 370);
         subCheckingButton.setSize(175, 30);
-        subCheckingButton.addActionListener(new ActionListener() {
+        /*subCheckingButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 if (subscriptionId() < 0) {
                     resultLog.setText("You have no subscription");
@@ -162,7 +162,7 @@ public class MainPage extends JPanel {
                     startCheckingButton.setEnabled(true);
                 }
             }
-        });
+        });*/
         add(subCheckingButton);
 
         JLabel outputBlockLabel = new JLabel("Output:");
@@ -173,7 +173,7 @@ public class MainPage extends JPanel {
 
     }
 
-    public int subscriptionId() {
+    /*public int subscriptionId() {
         int result = -1;
 
         for (ListItem item : parent.getDatabase().getListItems()) {
@@ -186,5 +186,5 @@ public class MainPage extends JPanel {
         }
 
         return result;
-    }
+    }*/
 }

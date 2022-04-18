@@ -108,26 +108,18 @@ public class SignUpPage extends JPanel {
                                     • Password must have at least one number
                                     • Password must have at least one special character among @#$%""",
                         "Invalid password", JOptionPane.ERROR_MESSAGE);
-            else if (setOrganization(emailInputField.getText(), passwordInputField.getText()).equals("no_such_account"))
-                JOptionPane.showMessageDialog(this, """
-                        It looks like your organization doesn't have an account with this email.
-                        Try contacting your manager to get detailed information.""", "No such account",
-                        JOptionPane.ERROR_MESSAGE);
-            else if (setOrganization(emailInputField.getText(), passwordInputField.getText()).
-                    equals("incorrect_password"))
-                JOptionPane.showMessageDialog(this, """
-                        We've found your email in organization's members list, but password is incorrect.
-                        Try contacting your manager to get detailed information.""", "Incorrect password",
-                        JOptionPane.ERROR_MESSAGE);
+            else if (!checkOrganization(passwordInputField.getText())) {
+                passwordInputField.setText("Change email or SIGN IN!");
+            }
             else {
-                parent.getDatabase().getUsers().add(new User(
-                        parent.getDatabase().getUsers().size()+1,
+                parent.getDatabaseManager().addUser(new User(
+                        null,
                         fullNameInputField.getText(),
                         phoneNumberInputField.getText(),
                         emailInputField.getText(),
                         passwordInputField.getText(),
                         countries[countriesSet.getSelectedIndex()],
-                        setOrganization(emailInputField.getText(), passwordInputField.getText())
+                        emailInputField.getText()
                 ));
                 JOptionPane.showMessageDialog(this, "Success!\n" +
                         "Now you can sign in with this data");
@@ -179,16 +171,16 @@ public class SignUpPage extends JPanel {
         return isValid;
     }
 
-    public String setOrganization(String email, String password) {
-        String result = "None";
+    public boolean checkOrganization(String email) {
+        boolean result = true;
 
-        for (Organization organization : parent.getDatabase().getOrganizations()) {
-            if (email.contains(organization.getCorporateDomain())) {
-                if (organization.getMembers().containsKey(email)) {
-                    if (organization.getMembers().get(email).contains(password))
-                        result = organization.getOrganizationName();
-                    else result = "incorrect_password";
-                } else result = "no_such_account";
+        for (Organization organization : parent.getDatabaseManager().getOrganizations()) {
+            if (organization.getMembers().containsKey(email)) {
+                JOptionPane.showMessageDialog(this, "You're trying to use organization's account." +
+                        " To continue you have to get default password from your manager and SIGN IN.\nOtherwise, " +
+                        "you can use another email to continue");
+                result = false;
+                break;
             }
         }
 

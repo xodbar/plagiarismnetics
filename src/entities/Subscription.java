@@ -1,6 +1,8 @@
 package entities;
 
-public class Subscription {
+import java.io.Serializable;
+
+public class Subscription implements Serializable {
     private Integer subscriptionID;
     private String description;
     private Double price;
@@ -41,5 +43,10 @@ public class Subscription {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return ("ID: " + subscriptionID + "\nDescription: " + description + "\nPrice: " + price);
     }
 }

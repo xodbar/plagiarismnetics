@@ -1,8 +1,9 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Purchase {
+public class Purchase implements Serializable {
     private Integer purchaseID;
     private Date orderDate;
     private boolean successfullyPaid;
@@ -65,5 +66,11 @@ public class Purchase {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    @Override
+    public String toString() {
+        return ("ID: " + purchaseID + "\nOrder date: " + orderDate + "\nSuccessfully paid: " + successfullyPaid +
+                "\nIs active: " + isActive + "\nTotal cost: " + totalCost + "$");
     }
 }

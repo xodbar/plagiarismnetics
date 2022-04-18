@@ -1,11 +1,12 @@
 package gui;
 
+import database.DatabaseManager;
 import entities.*;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class GeneralFrame extends JFrame {
     private SignInPage signInPage;
@@ -15,37 +16,11 @@ public class GeneralFrame extends JFrame {
     private SubscriptionsPage subscriptionsPage;
     private AdminPanelPage adminPanelPage;
 
+    private DatabaseManager databaseManager;
+
     private JMenuBar menuBar;
-    private Database database;
 
     public GeneralFrame() {
-        database = new Database();
-        database.getUsers().add(new User(
-                0,
-                "Admin",
-                "+7777777777",
-                "admin@iitusolutions.kz",
-                "Admin123$",
-                "Kazakhstan",
-                "IITU"
-        ));
-
-        HashMap<String, String> users = new HashMap<>();
-        users.put("29316@iitu.edu.kz", "100702Zh$");
-        database.getOrganizations().add(new Organization(
-                "IITU",
-                "@iitu.edu.kz",
-                15,
-                1,
-                users
-        ));
-
-        database.getSubscriptions().add(new Subscription(1, "Basic | Only documents", 15.0));
-        database.getSubscriptions().add(new Subscription(2, "Middle | Documents, OCR", 20.0));
-        database.getSubscriptions().add(new Subscription(3, "Pro | Documents, OCR & Archives", 30.0));
-        database.getSubscriptions().add(new Subscription(4, "Personal | Personal functions", 22.0));
-        database.getSubscriptions().add(new Subscription(5, "Enterprise | All functionality", 100.0));
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500,540);
         setTitle("Plagiarismnetics 0.1");
@@ -147,15 +122,6 @@ public class GeneralFrame extends JFrame {
         this.signUpPage = signUpPage;
     }
 
-
-    public Database getDatabase() {
-        return database;
-    }
-
-    public void setDatabase(Database database) {
-        this.database = database;
-    }
-
     public MainPage getMainPage() {
         return mainPage;
     }
@@ -207,5 +173,13 @@ public class GeneralFrame extends JFrame {
 
     public void setAdminPanelPage(AdminPanelPage adminPanelPage) {
         this.adminPanelPage = adminPanelPage;
+    }
+
+    public DatabaseManager getDatabaseManager() {
+        return databaseManager;
+    }
+
+    public void setDatabaseManager(DatabaseManager databaseManager) {
+        this.databaseManager = databaseManager;
     }
 }

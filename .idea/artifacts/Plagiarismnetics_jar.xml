@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Plagiarismnetics:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Plagiarismnetics_jar</output-path>
+    <root id="archive" name="Plagiarismnetics.jar">
+      <element id="module-output" name="Plagiarismnetics" />
+    </root>
+  </artifact>
+</component>

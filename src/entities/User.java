@@ -1,6 +1,8 @@
 package entities;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private Integer userID;
     private String fullName;
     private String phoneNumber;
@@ -96,5 +98,11 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return ("ID: " + userID + "\nFull Name: " + fullName + "\nEmail: " + email + "\nOrganization: " + organization
+            + "\nPhone number: " + phoneNumber + "\nPassword: " + password + "\nCountry: " + country);
     }
 }
